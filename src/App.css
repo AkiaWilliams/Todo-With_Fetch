@@ -4,11 +4,10 @@ body{
 .Zay{
   width: 50%;
   margin: auto;
-  margin-top: 10px;
-  padding-top: 25px;
+  margin-bottom: 0px;
 }
 .YOLO{
-  background-color: whitesmoke;
+  background-color: rgb(104, 32, 133);
   width: 38%;
   height: 700px;
   margin: auto;
@@ -17,6 +16,17 @@ body{
   margin-top: 7%;
   
 }
-.h1{
-  font-size: 150%;
+.Type{
+  font-size: 60px;
+  font-family: serif;
+}
+.Abby{
+  width: 50%;
+  margin: auto;
+  margin-top: 0px;
+}
+.pain{
+  width: 50%;
+  margin: auto;
+
 }
