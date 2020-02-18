@@ -47,25 +47,11 @@ const Todos = () => {
     });
   };
 
-  // fetch("https://jsonplaceholder.typicode.com/AkiaWilliams")
-  //   .then(res => res.json())
-  //   .then(resjson => console.log(resjson))
-  //   .catch(err => console.log(err));
-
-  // fetch("https://jsonplaceholder.typicode.com/AkiaWilliams", {
-  //   method: "POST",
-  //   body: json.stingify({ user: "peter" }),
-  //   hearders: { "content-type": "application/json" }
-  // })
-  //   .then(res => res.json())
-  //   .then(res => console.log(res))
-  //   .catch((er = console.log(err)));
-
   return (
-    <div className="Box1">
-      <h1 className="Type">My To-Do List</h1>
+    <div className="YOLO">
+      <h1 className="Type">TODOS</h1>
 
-      <div className="search input-group">
+      <div className="Zay input-group">
         <input
           type="text"
           className="form-control"
@@ -95,7 +81,7 @@ const Todos = () => {
         {todos.map((value, index) => {
           return (
             <li
-              className="apple list-group-item d-flex justify-content-between align-items-center"
+              className="Abby list-group-item d-flex justify-content-between align-items-center"
               key={index}
             >
               {value}

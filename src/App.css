@@ -1,13 +1,13 @@
 body {
-  background-color: black;
+  background-image: url("https://wallpapers.party/media/2019/04/864345.jpg");
 }
-.box1 {
+.Zay {
   width: 50%;
   margin: auto;
   margin-bottom: 0px;
 }
-.search {
-  background-color: white (104, 32, 133);
+.YOLO {
+  background-image: url("https://wallpapers.party/media/2019/04/864345.jpg");
   width: 38%;
   height: 700px;
   margin: auto;
@@ -18,8 +18,9 @@ body {
 .Type {
   font-size: 60px;
   font-family: serif;
+  color: rgb(190, 185, 185);
 }
-.apple {
+.Abby {
   width: 50%;
   margin: auto;
   margin-top: 0px;
