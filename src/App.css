@@ -1,32 +1,30 @@
-body{
+body {
   background-color: black;
 }
-.Zay{
+.box1 {
   width: 50%;
   margin: auto;
   margin-bottom: 0px;
 }
-.YOLO{
-  background-color: rgb(104, 32, 133);
+.search {
+  background-color: white (104, 32, 133);
   width: 38%;
   height: 700px;
   margin: auto;
   padding-top: 40px;
   text-align: center;
   margin-top: 7%;
-  
 }
-.Type{
+.Type {
   font-size: 60px;
   font-family: serif;
 }
-.Abby{
+.apple {
   width: 50%;
   margin: auto;
   margin-top: 0px;
 }
-.pain{
+.pain {
   width: 50%;
   margin: auto;
-
 }
