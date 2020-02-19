@@ -6,30 +6,56 @@ const Todos = () => {
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
-    // Making GET request, testing is user exists
-    console.log("test");
-    fetch(url)
-      .then(res => res.json())
-      .then(res => {
-        console.log("response:" + JSON.stringify(res));
+    const fetchGetTodos = () => {
+      return fetch(url)
+        .then(res => res.json())
+        .then(res => {
+          return res;
+        })
+        .catch(err => console.log("error" + err));
+    };
 
-        // if user does not exit,we get a "msg"
-        if (res.msg) {
-          // If user does not exit, we'll create it
-          fetch(url, {
-            method: "POST",
-            body: JSON.stringify([{}]),
-            headers: { "Content-Type": "application/json" }
-          })
-            .then(res => res.json())
-            .then(res => console.log(res))
-            .catch(err => console.log(`error: ${err}`));
-        } else {
-          console.log("user exists, here is response:" + JSON.stringify(res));
-        }
+    const fetchCreateUser = () => {
+      return fetch(url, {
+        method: "POST",
+        body: JSON.stringify([{}]),
+        headers: { "Content-Type": "application/json" }
       })
+        .then(res => res.json())
+        .then(res => {
+          return res;
+        })
+        .catch(err => console.log("error" + err));
+    };
 
-      .catch(err => console.log(`error: ${err}`));
+    const fetchUpdateTodos = () => {
+      const todosData = todos.map(todo => {
+        return { label: todo, done: false };
+      });
+      return fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(todosData),
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(res => res.json())
+        .then(res => {
+          return res;
+        })
+        .catch(err => console.log("error" + err));
+    };
+
+    // Making GET request, testing is user exits
+    fetchGetTodos().then(res => {
+      console.log("response: " + JSON.stringify(res));
+      // if user does not exist, we get a "msg"
+      if (res.msg) {
+        // If user does not exists, we'll create it
+        console.log("user does not exists");
+        fetchCreateUser().then(res => console.log(res));
+      } else {
+        console.log("user exists, here is response: " + JSON.stringify(res));
+      }
+    });
   }, [todos]);
 
   const addTodo = newTodoFromInput => {
