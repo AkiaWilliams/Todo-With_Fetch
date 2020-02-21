@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-
 const url = "https://assets.breatheco.de/apis/fake/todos/user/AkiaWilliams";
+
 const Todos = () => {
   const [todos, setTodos] = useState([]);
+  const [init, setInit] = useState(true);
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
@@ -12,60 +13,46 @@ const Todos = () => {
         .then(res => {
           return res;
         })
-        .catch(err => console.log("error" + err));
+        .catch(err => console.log("error:" + err));
     };
-
     const fetchCreateUser = () => {
       return fetch(url, {
         method: "POST",
         body: JSON.stringify([{}]),
-        headers: { "Content-Type": "application/json" }
+        headers: { "content.Type": "application/json" }
       })
         .then(res => res.json())
         .then(res => {
           return res;
         })
-        .catch(err => console.log("error" + err));
+        .catch(err => console.log("error:" + err));
     };
-
     const fetchUpdateTodos = () => {
-      const todosData = todos.map(todo => {
-        return { label: todo, done: false };
+      const todosData = todos.map(todos => {
+        return { label: "todos", done: false };
       });
       return fetch(url, {
         method: "PUT",
         body: JSON.stringify(todosData),
-        headers: { "Content-Type": "application/json" }
+        headers: { "content.Type": "application/json" }
       })
         .then(res => res.json())
         .then(res => {
           return res;
         })
-        .catch(err => console.log("error" + err));
+        .catch(err => console.log("error:" + err));
     };
-
-    // Making GET request, testing is user exits
     fetchGetTodos().then(res => {
-      console.log("response: " + JSON.stringify(res));
-      // if user does not exist, we get a "msg"
+      console.log("response:" + JSON.stringify(res));
       if (res.msg) {
-        // If user does not exists, we'll create it
-        console.log("user does not exists");
         fetchCreateUser().then(res => console.log(res));
       } else {
-        console.log("user exists, here is response: " + JSON.stringify(res));
+        console.log("user exits, here is response:" + JSON.stringify(res));
       }
     });
   }, [todos]);
 
-  const addTodo = newTodoFromInput => {
-    if (newTodoFromInput) {
-      setTodos(prevTodos => [...prevTodos, newTodoFromInput]);
-    }
-  };
-
   const deleteTodos = indexToDelete => {
-    console.log(indexToDelete);
     setTodos(prevTodos => {
       return prevTodos.filter((value, index) => {
         return indexToDelete !== index;
@@ -117,7 +104,7 @@ const Todos = () => {
                   deleteTodos(index);
                 }}
               >
-                xx
+                x
               </span>
             </li>
           );
