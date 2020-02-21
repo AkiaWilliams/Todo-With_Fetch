@@ -117,7 +117,7 @@ const Todos = () => {
                   deleteTodos(index);
                 }}
               >
-                x
+                xx
               </span>
             </li>
           );
