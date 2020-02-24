@@ -18,8 +18,8 @@ const Todos = () => {
     const fetchCreateUser = () => {
       return fetch(url, {
         method: "POST",
-        body: JSON.stringify([{}]),
-        headers: { "content.Type": "application/json" }
+        body: JSON.stringify([]),
+        headers: { "content-Type": "application/json" }
       })
         .then(res => res.json())
         .then(res => {
@@ -28,13 +28,13 @@ const Todos = () => {
         .catch(err => console.log("error:" + err));
     };
     const fetchUpdateTodos = () => {
-      const todosData = todos.map(todos => {
-        return { label: "todos", done: false };
+      const todosData = todos.map(todo => {
+        return { label: todo, done: false };
       });
       return fetch(url, {
         method: "PUT",
         body: JSON.stringify(todosData),
-        headers: { "content.Type": "application/json" }
+        headers: { "content-Type": "application/json" }
       })
         .then(res => res.json())
         .then(res => {
@@ -42,15 +42,27 @@ const Todos = () => {
         })
         .catch(err => console.log("error:" + err));
     };
-    fetchGetTodos().then(res => {
-      console.log("response:" + JSON.stringify(res));
-      if (res.msg) {
-        fetchCreateUser().then(res => console.log(res));
-      } else {
-        console.log("user exits, here is response:" + JSON.stringify(res));
-      }
-    });
-  }, [todos]);
+    if (init === true) {
+      fetchGetTodos().then(res => {
+        console.log("response:" + JSON.stringify(res));
+
+        if (res.msg) {
+          console.log("user does not exits");
+          fetchCreateUser().then(() => {
+            fetchGetTodos(url).then(res =>
+              setTodos(res.map(todos => todos.label))
+            );
+            setInit(false);
+          });
+        } else {
+          setTodos(res.map(todo => todo.label));
+          setInit(false);
+        }
+      });
+    } else {
+      fetchUpdateTodos();
+    }
+  }, [todos, init]);
 
   const deleteTodos = indexToDelete => {
     setTodos(prevTodos => {
